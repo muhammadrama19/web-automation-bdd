@@ -1,13 +1,10 @@
 # @Webautomation
 Feature: Login Zaidan Educare
 
-    Scenario: Setup
-        Given user is opened the browser
-        And user accessing url http://ptbsp.ddns.net:6882/
+    Background:
+        Given User is opened the browser
+        And User accessing url http://ptbsp.ddns.net:6882/
 
-    # Background:
-    #     Given user is opened the browser
-    #     And user accessing url http://ptbsp.ddns.net:6882/
 
     # @PageVerfication @TC1
     # Scenario: Login page is displayed
