@@ -42,42 +42,35 @@ public class PageVerificationStep {
 
     @Then("User/user should be able to see app(lication) logo")
     public void user_should_see_application_logo() {
-        assertEquals(true, loginAction.isApplicationLogoExists());
+        boolean isLogoDisplayed = loginAction.isApplicationLogoExists();
+        assertEquals(true, isLogoDisplayed);
     }
 
-    // @Then("User/user should be able to see app(lication) title {string}")
-    // public void user_should_see_application_title(String title) {
-    //     String titleXPath = "/html/body/div[2]/div/div[1]/h1";
-    //     String actualTitle = driver.findElement(By.xpath(titleXPath)).getText();
-    //     String expectedTitle = title;
-    //     assertEquals(expectedTitle, actualTitle);
-    // }
+    @Then("User/user should be able to see app(lication) title {string}")
+    public void user_should_see_application_title(String title) {
+        String actualTitle = loginAction.isApplicationTitleExists();
+        assertEquals(title, actualTitle);
+    }
 
-    // @Then("User/user should be able to see this following text:")
-    // public void user_should_see_this_following_text(DataTable dataTable) {
-    //     for (String text : dataTable.asList()) {
-    //         String textXPath = "//*[contains(text(),'" + text + "')]";
-    //         boolean isTextDisplayed = driver.findElement(By.xpath(textXPath)).isDisplayed();
-    //         assertEquals(true, isTextDisplayed);
-    //     }
-    // }
+    @Then("User/user should be able to see this following text:")
+    public void user_should_see_this_following_text(DataTable dataTable) {
+        for (String text : dataTable.asList()) {
+            boolean isTextDisplayed = loginAction.isTextExists(text);
+            assertEquals(true, isTextDisplayed);
+        }
+    }
 
-    // @Then("User/user should be able to see {word} input field")
-    // public void user_should_see_input_field(String fieldName) {
-    //     String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-    //         + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-    //         + fieldName.toLowerCase() + "']/following-sibling::input";
-    //     boolean isFieldDisplayed = driver.findElement(By.xpath(fieldXPath)).isDisplayed();
-    //     assertEquals(true, isFieldDisplayed);
-    // }
+    @Then("User/user should be able to see {word} input field")
+    public void user_should_see_input_field(String fieldName) {
+        boolean isFieldDisplayed = loginAction.isInputFieldWithLabelExists(fieldName);
+        assertEquals(true, isFieldDisplayed);
+    }
 
-    // @Then("User/user should be able to see {word} button")
-    // public void user_should_see_button(String buttonName) {
-    //     String buttonXPath = "//button[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-    //         + buttonName.toLowerCase() + "']";
-    //     boolean isButtonDisplayed = driver.findElement(By.xpath(buttonXPath)).isDisplayed();
-    //     assertEquals(true, isButtonDisplayed);
-    // }
+    @Then("User/user should be able to see {word} button")
+    public void user_should_see_button(String buttonName) {
+        boolean isButtonDisplayed = loginAction.isButtonExists(buttonName);
+        assertEquals(true, isButtonDisplayed);
+    }
 
     @After
     public void tearDown() {
