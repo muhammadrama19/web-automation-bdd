@@ -1,4 +1,4 @@
-package com.webautomation;
+package com.webautomation.cucumberRunner;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
