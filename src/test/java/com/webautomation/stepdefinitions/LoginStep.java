@@ -1,6 +1,6 @@
 package com.webautomation.stepdefinitions;
 
-import org.assertj.core.api.Assert;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.webautomation.automation.action.DashboardAction;
 import com.webautomation.automation.action.LoginAction;
@@ -8,6 +8,7 @@ import com.webautomation.automation.utils.SeleniumHelper;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,13 +31,13 @@ public class LoginStep {
 
     @And("user click login button")
     public void user_click_login_button() {
-       loginAction.loginStep();
+       loginAction.loginClicked();
     }
 
     @Then("user should see the dashboard page")
     public void user_should_see_the_dashboard_page() {
-        Assert.assertThat(dashboardAction.isBendaharaDashboardTitleExists()).isTrue();
-        Assert.assertThat(dashboardAction.isBendaharaProfileExists()).isTrue();
+        assertTrue(dashboardAction.isBendaharaDashboardTitleExists());
+        assertTrue(dashboardAction.isBendaharaProfileExists());
     }
 
     @When("user input wrong username {string} and password {string}")
@@ -46,7 +47,7 @@ public class LoginStep {
 
     @Then("user should see the error message for incorrect username {string}")
     public void user_should_see_the_error_message_for_incorrect_username(String s) {
-        Assert.assertThat(loginAction.isTextExists("Incorrect username or password, please try again!")).isTrue();
+        assertTrue(loginAction.isTextExists("Incorrect username or password, please try again!"));
     }
 
     @When("user input username {string} and wrong password {string}")
@@ -56,12 +57,12 @@ public class LoginStep {
 
     @Then("user should see the error message for incorrect password {string}")
     public void user_should_see_the_error_message_for_incorrect_password(String s) {
-        Assert.assertThat(loginAction.isTextExists("Incorrect username or password, please try again!")).isTrue();
+        assertTrue(loginAction.isTextExists("Incorrect username or password, please try again!"));
     }
 
     @After
     public void tearDown() {
-        SeleniumHelper.quitDriver();
+        SeleniumHelper.closeDriver();   
     }
 
 
