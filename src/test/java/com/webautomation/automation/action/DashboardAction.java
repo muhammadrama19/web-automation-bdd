@@ -1,5 +1,6 @@
 package com.webautomation.automation.action;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.webautomation.automation.pagelocator.DashboardLocator;
@@ -16,12 +17,14 @@ public class DashboardAction {
     }
 
     public boolean isBendaharaDashboardTitleExists() {
-        String title = dashboardLocator.bendaharaDashboardTitle;
-        return title != null && !title.isEmpty();
+        WebElement dashboardTitle = dashboardLocator.bendaharaDashboardTitle;
+        boolean isDisplayed = dashboardTitle.isDisplayed();
+        return isDisplayed;
     }
 
     public boolean isBendaharaProfileExists() {
-        String profile = dashboardLocator.bendaharaProfile;
-        return profile != null && !profile.isEmpty();
+        WebElement profile = dashboardLocator.bendaharaProfile;
+        boolean isDisplayed = profile.isDisplayed();
+        return isDisplayed;
     }
 }
