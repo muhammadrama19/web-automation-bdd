@@ -87,4 +87,9 @@ public class LoginStep {
         boolean isMessageDisplayed = loginAction.isTextExists(s);
         assertTrue(isMessageDisplayed);
     }
+
+    @Then("user should be able to see the error message for incorrect password {string}")
+    public void user_should_see_error_message_password(String msg) {
+        assertTrue(loginAction.isTextExists(msg));
+    }
 }

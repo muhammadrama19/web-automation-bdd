@@ -54,3 +54,14 @@ Feature: Login Zaidan Educare
       And user input password "admin123"
       And user click login button
       Then user should be able to see message for wrong formatted username "Username diisi dengan huruf kecil semua"
+    @Negative @TC2.9
+    Scenario: Login with username more than 20 characters
+      When user input username "wdadwadwadawdwagdwiau" and password "admin123"
+      And user click login button
+      Then user should be able to see message for wrong formatted username "Username maksimal 20 karakter"
+
+    @Negative @TC2.10
+    Scenario: Login with password less than 6 characters
+      When user input username "bendahara" and wrong password "admin"
+      And user click login button
+      Then user should be able to see the error message for incorrect password "Password minimal 6 karakter"

@@ -2,6 +2,9 @@ package com.webautomation.automation.action;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 import com.webautomation.automation.pagelocator.DashboardLocator;
 import com.webautomation.automation.utils.SeleniumHelper;
@@ -35,5 +38,13 @@ public class DashboardAction {
             System.out.println("Bendahara profile is not displayed: " + e.getMessage());
             return false;
         }
+    }
+    
+    public void clickLogout() {
+        dashboardLocator.logoutButton.click();
+        new WebDriverWait(SeleniumHelper.getDriver(), Duration.ofSeconds(5))
+            .until(ExpectedConditions.elementToBeClickable(dashboardLocator.logoutConfirmButton))
+            .click();
+        SeleniumHelper.waitForPageToLoad();
     }
 }
