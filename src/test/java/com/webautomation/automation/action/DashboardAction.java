@@ -10,21 +10,30 @@ public class DashboardAction {
 
     DashboardLocator dashboardLocator;
 
-
     public DashboardAction() {
         this.dashboardLocator = new DashboardLocator();
         PageFactory.initElements(SeleniumHelper.getDriver(), dashboardLocator);
     }
 
     public boolean isBendaharaDashboardTitleExists() {
-        WebElement dashboardTitle = dashboardLocator.bendaharaDashboardTitle;
-        boolean isDisplayed = dashboardTitle.isDisplayed();
-        return isDisplayed;
+        try {
+            WebElement dashboardTitle = dashboardLocator.bendaharaDashboardTitle;
+            boolean isDisplayed = dashboardTitle.isDisplayed();
+            return isDisplayed;
+        } catch (Exception e) {
+            System.out.println("Dashboard title is not displayed: " + e.getMessage());
+            return false;
+        }
     }
 
     public boolean isBendaharaProfileExists() {
-        WebElement profile = dashboardLocator.bendaharaProfile;
-        boolean isDisplayed = profile.isDisplayed();
-        return isDisplayed;
+        try {
+            WebElement profile = dashboardLocator.bendaharaProfile;
+            boolean isDisplayed = profile.isDisplayed();
+            return isDisplayed;
+        } catch (Exception e) {
+            System.out.println("Bendahara profile is not displayed: " + e.getMessage());
+            return false;
+        }
     }
 }
