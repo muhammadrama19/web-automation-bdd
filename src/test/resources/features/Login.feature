@@ -47,10 +47,10 @@ Feature: Login Zaidan Educare
       And user click login button
       Then user should be able to see message "Username wajib diisi" under username input field
       And user should be able to see message "Password wajib diisi" under password input field
-    
+
     @Negative @TC2.8
     Scenario: Login with wrong formatted username
-    When user input wrong formatted username "BENDAHARA"
-    And user input password "admin123"
-    And user click login button
-    Then user should be able to see message for wrong formatted username "Username diisi dengan huruf kecil semua"
+      When user input wrong formatted username "BENDAHARA"
+      And user input password "admin123"
+      And user click login button
+      Then user should be able to see message for wrong formatted username "Username diisi dengan huruf kecil semua"
