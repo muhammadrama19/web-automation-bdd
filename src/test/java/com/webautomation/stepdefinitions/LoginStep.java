@@ -82,14 +82,9 @@ public class LoginStep {
         loginAction.setField("Username", username);
     }
 
-    @And ("user input password {string}")
-    public void user_input_password(String password) {
-        loginAction.setField("Password", password);
-    }
-
     @Then("user should be able to see message for wrong formatted username {string}")
     public void user_should_be_able_to_see_message_for_wrong_formatted_username(String s) {
-        boolean isMessageDisplayed = loginAction.isTextExists("Incorrect username or password, please try again!");
+        boolean isMessageDisplayed = loginAction.isTextExists(s);
         assertTrue(isMessageDisplayed);
     }
 }

@@ -53,4 +53,4 @@ Feature: Login Zaidan Educare
     When user input wrong formatted username "BENDAHARA"
     And user input password "admin123"
     And user click login button
-    Then user should be able to see message for wrong formatted username "Incorrect username or password, please try again!"
+    Then user should be able to see message for wrong formatted username "Username diisi dengan huruf kecil semua"
