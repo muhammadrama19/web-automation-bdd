@@ -1,5 +1,6 @@
 package com.webautomation.stepdefinitions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.webautomation.automation.action.DashboardAction;
@@ -24,14 +25,14 @@ public class LoginStep {
         dashboardAction = new DashboardAction();
     }
 
-   @When("user input username {string} and password {string}")
+    @When("user input username {string} and password {string}")
     public void user_input_valid_credentials(String username, String password) {
         loginAction.loginStep("bendahara", "admin123");
     }
 
     @And("user click login button")
     public void user_click_login_button() {
-       loginAction.loginClicked();
+        loginAction.loginClicked();
     }
 
     @Then("user should see the dashboard page")
@@ -60,21 +61,20 @@ public class LoginStep {
         assertTrue(loginAction.isTextExists("Incorrect username or password, please try again!"));
     }
 
-    @After
-    public void tearDown() {
-        SeleniumHelper.closeDriver();   
+    @When("User/user left the {word}( field) empty")
+    public void user_left_the_field_empty(String fieldName) {
+        loginAction.setFieldEmpty(fieldName);
     }
 
+    @Then("User/user should be able to see message {string} under {word}( input) field")
+    public void user_should_see_message_under_input_field(String message, String fieldName) {
+        boolean isMessageDisplayed = loginAction.isTextExistUnderInputField(fieldName, message);
+        assertTrue(isMessageDisplayed);
+    }
 
-
-
-
-  
-
-
-
-
-
-
+    @When("User/user input {word}( field)( with)( value) {string}")
+    public void user_input_field_with_value(String fieldName, String value) {
+        loginAction.setField(fieldName, value);
+    }
 
 }

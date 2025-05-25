@@ -1,6 +1,7 @@
 package com.webautomation.stepdefinitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Driver;
 
@@ -16,6 +17,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class PageVerificationStep {
 
@@ -28,7 +30,7 @@ public class PageVerificationStep {
     @Then("User/user should be able to see app(lication) logo")
     public void user_should_see_application_logo() {
         boolean isLogoDisplayed = loginAction.isApplicationLogoExists();
-        assertEquals(true, isLogoDisplayed);
+        assertTrue(isLogoDisplayed);
     }
 
     @Then("User/user should be able to see app(lication) title {string}")
@@ -41,25 +43,20 @@ public class PageVerificationStep {
     public void user_should_see_this_following_text(DataTable dataTable) {
         for (String text : dataTable.asList()) {
             boolean isTextDisplayed = loginAction.isTextExists(text);
-            assertEquals(true, isTextDisplayed);
+            assertTrue(isTextDisplayed);
         }
     }
 
     @Then("User/user should be able to see {word} input field")
     public void user_should_see_input_field(String fieldName) {
         boolean isFieldDisplayed = loginAction.isInputFieldWithLabelExists(fieldName);
-        assertEquals(true, isFieldDisplayed);
+        assertTrue(isFieldDisplayed);
     }
 
     @Then("User/user should be able to see {word} button")
     public void user_should_see_button(String buttonName) {
         boolean isButtonDisplayed = loginAction.isButtonExists(buttonName);
-        assertEquals(true, isButtonDisplayed);
-    }
-
-    @After
-    public void tearDown() {
-        SeleniumHelper.closeDriver();
+        assertTrue(isButtonDisplayed);
     }
 
 }

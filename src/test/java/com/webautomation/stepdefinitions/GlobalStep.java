@@ -4,17 +4,18 @@ import com.webautomation.automation.action.LoginAction;
 import com.webautomation.automation.utils.SeleniumHelper;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 
 public class GlobalStep {
-    private LoginAction loginAction;
 
-    @Before
-    public void setUp() {
-        loginAction = new LoginAction();
+    @BeforeAll
+    public static void before_all() {
+        SeleniumHelper seleniumHelper = new SeleniumHelper();
     }
-
+    
     @Given("^(?:[uU]ser) is opened the browser$")
     public void user_is_opened_the_browser() {
         SeleniumHelper.getDriver().manage().window().maximize();
@@ -23,6 +24,7 @@ public class GlobalStep {
     @Given("User/user accessing url {word}")
     public void user_accessing_url(String url) {
         SeleniumHelper.navigateTo(url);
+        SeleniumHelper.waitForPageToLoad();
     }
 
     @Given("^(?:[uU]ser) is not logged in$")
@@ -30,8 +32,8 @@ public class GlobalStep {
         SeleniumHelper.getDriver().manage().deleteAllCookies();
     }
 
-    @After
-    public void tearDown() {
+    @AfterAll
+    public static void after_all() {
         SeleniumHelper.closeDriver();
     }
 }

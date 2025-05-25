@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 public class LoginAction {
 
     LoginLocator loginLocator;
-    
+
     public LoginAction() {
         this.loginLocator = new LoginLocator();
         PageFactory.initElements(SeleniumHelper.getDriver(), loginLocator);
@@ -38,19 +38,21 @@ public class LoginAction {
     }
 
     public boolean isTextExistUnderInputField(String fieldName, String text) {
-        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + fieldName.toLowerCase() + "']/following-sibling::input";
-        String textXPath = fieldXPath + "/following-sibling::div[contains(text(),'" + text + "')]";
+        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase()
+                + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase() + "']/following-sibling::input";
+        String textXPath = fieldXPath + "/following-sibling::*[contains(text(),'" + text + "')]";
         WebElement textElement = SeleniumHelper.getDriver().findElement(By.xpath(textXPath));
         boolean isDisplayed = textElement.isDisplayed();
         return isDisplayed;
     }
 
     public boolean isInputFieldWithLabelExists(String fieldName) {
-        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + fieldName.toLowerCase() + "']/following-sibling::input";
+        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase()
+                + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase() + "']/following-sibling::input";
         WebElement inputField = SeleniumHelper.getDriver().findElement(By.xpath(fieldXPath));
         boolean isDisplayed = inputField.isDisplayed();
         boolean isEmpty = inputField.getAttribute("value").isEmpty();
@@ -58,19 +60,30 @@ public class LoginAction {
     }
 
     public boolean isButtonExists(String buttonName) {
-        String buttonXPath = "//button[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + buttonName.toLowerCase() + "']";
+        String buttonXPath = "//button[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + buttonName.toLowerCase() + "']";
         WebElement button = SeleniumHelper.getDriver().findElement(By.xpath(buttonXPath));
         boolean isDisplayed = button.isDisplayed();
         return isDisplayed;
     }
 
     public void setFieldEmpty(String fieldName) {
-        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
-            + fieldName.toLowerCase() + "']/following-sibling::input";
+        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase()
+                + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase() + "']/following-sibling::input";
         WebElement field = SeleniumHelper.getDriver().findElement(By.xpath(fieldXPath));
         field.clear();
+    }
+
+    public void setField(String fieldName, String text) {
+        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase()
+                + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '"
+                + fieldName.toLowerCase() + "']/following-sibling::input";
+        WebElement field = SeleniumHelper.getDriver().findElement(By.xpath(fieldXPath));
+        field.clear();
+        field.sendKeys(text);
     }
 
     public boolean isUsernameFieldExists() {
@@ -88,13 +101,18 @@ public class LoginAction {
     }
 
     public void loginStep(String username, String password) {
-        loginLocator.usernameField.sendKeys(username);
-        loginLocator.passwordField.sendKeys(password);
-        loginLocator.loginButton.click();
+        WebElement Username = loginLocator.usernameField;
+        Username.clear();
+        Username.sendKeys(username);
+        WebElement Password = loginLocator.passwordField;
+        Password.clear();
+        Password.sendKeys(password);
     }
 
     public void loginClicked() {
-        loginLocator.loginButton.click();
+        WebElement loginButton = loginLocator.loginButton;
+        loginButton.click();
+        SeleniumHelper.waitForPageToLoad();
     }
 
 }

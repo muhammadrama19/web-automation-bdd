@@ -45,4 +45,16 @@ public class SeleniumHelper {
             throw new IllegalStateException("WebDriver is not initialized. Call getDriver() first.");
         }
     }
+
+    public static void waitForPageToLoad() {
+        if (driver != null) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        } else {
+            throw new IllegalStateException("WebDriver is not initialized. Call getDriver() first.");
+        }
+    }
 }
