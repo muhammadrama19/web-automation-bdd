@@ -6,6 +6,7 @@ Feature: Page verification
 
   Rule: Login page must exist when user not logged in
 
+    @Positive @TC1 @PageVerification
     Scenario: Verification that login page is exist
       Given User is not logged in
       And user accessing url http://ptbsp.ddns.net:6882/login

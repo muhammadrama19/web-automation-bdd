@@ -36,6 +36,16 @@ public class LoginAction {
         return isDisplayed;
     }
 
+    public boolean isTextExistUnderInputField(String fieldName, String text) {
+        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
+            + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
+            + fieldName.toLowerCase() + "']/following-sibling::input";
+        String textXPath = fieldXPath + "/following-sibling::div[contains(text(),'" + text + "')]";
+        WebElement textElement = SeleniumHelper.getDriver().findElement(By.xpath(textXPath));
+        boolean isDisplayed = textElement.isDisplayed();
+        return isDisplayed;
+    }
+
     public boolean isInputFieldWithLabelExists(String fieldName) {
         String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
             + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
@@ -52,6 +62,14 @@ public class LoginAction {
         WebElement button = SeleniumHelper.getDriver().findElement(By.xpath(buttonXPath));
         boolean isDisplayed = button.isDisplayed();
         return isDisplayed;
+    }
+
+    public void setFieldEmpty(String fieldName) {
+        String fieldXPath = "//label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
+            + fieldName.toLowerCase() + "']/following-sibling::*//input | //label[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '" 
+            + fieldName.toLowerCase() + "']/following-sibling::input";
+        WebElement field = SeleniumHelper.getDriver().findElement(By.xpath(fieldXPath));
+        field.clear();
     }
 
     public boolean isUsernameFieldExists() {
