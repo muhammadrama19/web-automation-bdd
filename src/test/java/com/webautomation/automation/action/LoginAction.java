@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 public class LoginAction {
 
     LoginLocator loginLocator;
+    
     public LoginAction() {
         this.loginLocator = new LoginLocator();
         PageFactory.initElements(SeleniumHelper.getDriver(), loginLocator);
@@ -71,6 +72,10 @@ public class LoginAction {
     public void loginStep(String username, String password) {
         loginLocator.usernameField.sendKeys(username);
         loginLocator.passwordField.sendKeys(password);
+        loginLocator.loginButton.click();
+    }
+
+    public void loginClicked() {
         loginLocator.loginButton.click();
     }
 
