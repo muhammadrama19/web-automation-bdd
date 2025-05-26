@@ -14,7 +14,7 @@ public class DashboardLocator {
     @FindBy(xpath = "/html/body/div[2]/main/div/div[1]/div/div/div[2]/button")
     public WebElement logoutButton;
     
-    @FindBy(xpath = "//*[@id='radix-:ri:']/div[2]/button[2]")
+    @FindBy(xpath = "//button[text()='Ya']")
     public WebElement logoutConfirmButton;
 
 }
