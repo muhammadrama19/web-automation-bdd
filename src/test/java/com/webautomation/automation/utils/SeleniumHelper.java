@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,7 @@ public class SeleniumHelper {
     private static WebDriver driver;
 
     public SeleniumHelper(){
-        System.setProperty("webdriver.edge.driver", "edgedriver_win64/msedgedriver.exe");
+        WebDriverManager.edgedriver().setup();
         
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--start-maximized");
