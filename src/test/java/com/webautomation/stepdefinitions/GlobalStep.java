@@ -1,5 +1,11 @@
 package com.webautomation.stepdefinitions;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import java.io.File;
+
 import com.webautomation.automation.action.LoginAction;
 import com.webautomation.automation.utils.SeleniumHelper;
 
@@ -7,6 +13,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 
 public class GlobalStep {
@@ -35,5 +42,19 @@ public class GlobalStep {
     @AfterAll
     public static void after_all() {
         SeleniumHelper.closeDriver();
+    }
+
+     @After
+    public void tearDown(Scenario scenario) {
+        WebDriver driver = SeleniumHelper.getDriver();
+        if (scenario.isFailed() && driver != null) {
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "Failed_Screenshot");
+            try {
+                FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE), new File("screenshots/" + scenario.getName() + ".png"));
+            } catch (java.io.IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
