@@ -12,6 +12,8 @@ Feature: Login Zaidan Educare
     And user click login button
     Then user should see the dashboard page
 
+  Rule: Login is invalid when credentials are incorrect
+
   @Negative @TC2.3
   Scenario: Login with invalid credentials username
     When user input wrong username "indra" and password "admin123"
@@ -48,17 +50,22 @@ Feature: Login Zaidan Educare
       Then user should be able to see message "Username wajib diisi" under username input field
       And user should be able to see message "Password wajib diisi" under password input field
 
+  Rule: Login is invalid when username is not formatted correctly
+
     @Negative @TC2.8
     Scenario: Login with wrong formatted username
       When user input wrong formatted username "BENDAHARA"
       And user input password "admin123"
       And user click login button
       Then user should be able to see message for wrong formatted username "Username diisi dengan huruf kecil semua"
+
     @Negative @TC2.9
     Scenario: Login with username more than 20 characters
       When user input username "wdadwadwadawdwagdwiau" and password "admin123"
       And user click login button
       Then user should be able to see message for wrong formatted username "Username maksimal 20 karakter"
+
+  Rule: Login is invalid when password is not formatted correctly
 
     @Negative @TC2.10
     Scenario: Login with password less than 6 characters
