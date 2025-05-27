@@ -1,6 +1,6 @@
 .vscode
 .idea
 .allure
-target
-target/
 target/*
+!target/allure-results/
+!target/site/

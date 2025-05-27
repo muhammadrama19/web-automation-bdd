@@ -17,9 +17,9 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @ConfigurationParameter(key = FEATURES_PROPERTY_NAME, value = "classpath:features")
 // @ConfigurationParameter(key = "plugin", value =
 // "html:target/cucumber-reports/cucumber")
-// @ConfigurationParameter(
-// key = PLUGIN_PROPERTY_NAME,
-// value = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
-// )
+@ConfigurationParameter(
+key = PLUGIN_PROPERTY_NAME,
+value = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+)
 public class RunCucumberTest {
 }
