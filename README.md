@@ -1,6 +1,6 @@
 # Web Automation BDD for Zaidan Educare
 
-This project is a Behavior-Driven Development (BDD) test automation suite for the Zaidan Educare "Pengelolaan Dana Pendidikan Sekolah Zaidan Educare" web application. It uses Java, Selenium WebDriver, Cucumber, and JUni to automate and verify login, logout and page verification scenarios.
+This project is a Behavior-Driven Development (BDD) test automation suite for the Zaidan Educare "Pengelolaan Dana Pendidikan Sekolah Zaidan Educare" web application. It uses Java, Selenium WebDriver, Cucumber, and JUnit to automate and verify login, logout and page verification scenarios.
 
 ## Team Member
 - Aryo Rakatama (221524003)
@@ -9,7 +9,7 @@ This project is a Behavior-Driven Development (BDD) test automation suite for th
 
 
 ## Features
-- Automated browser-based testing using Selenium
+- Automated web testing using Selenium
 - BDD-style test scenarios written in Gherkin (Cucumber)
 - Page Object Model for maintainable and reusable UI interactions
 - Allure reporting integration for test results
@@ -42,7 +42,7 @@ web-automation-bdd/
 - Java 17 or higher
 - Maven
 - Microsoft Edge browser
-- Edge WebDriver (included in `edgedriver_win64/`)
+- Make sure you have good internet connection
 
 ### Installation and Running
 1. Clone this repository:
@@ -50,9 +50,9 @@ web-automation-bdd/
    git clone https://github.com/muhammadrama19/web-automation-bdd.git
    cd web-automation-bdd
    ```
-2. Running test:
+2. Running test also clean the cached result test before:
    ```sh
-   mvn test
+   mvn clean test
    ```
 
 ### Viewing Allure Reports
