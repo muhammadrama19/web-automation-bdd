@@ -156,4 +156,34 @@ public class LoginAction {
         SeleniumHelper.waitForPageToLoad();
     }
 
+    public boolean isEyeIconVisible() {
+        try {
+            return loginLocator.eyeIcon.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean eyeClicked() {
+        try {
+            WebElement eyeIcon = loginLocator.eyeIcon;
+            eyeIcon.click();
+            SeleniumHelper.waitForPageToLoad();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Eye icon is not clickable: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean isPasswordVisible() {
+        String type = loginLocator.passwordField.getAttribute("type");
+        return type.equals("text");
+    }
+
+    public boolean isPasswordHidden() {
+        String type = loginLocator.passwordField.getAttribute("type");
+        return type.equals("password");
+    }
+
 }

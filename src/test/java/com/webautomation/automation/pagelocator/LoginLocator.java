@@ -20,4 +20,6 @@ public class LoginLocator {
     @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div/form/button")
     public WebElement loginButton;
 
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div/form/div[2]/div/button")
+    public WebElement eyeIcon;
 }

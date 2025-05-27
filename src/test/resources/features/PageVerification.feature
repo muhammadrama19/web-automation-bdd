@@ -18,3 +18,12 @@ Feature: Page verification
       And user should be able to see username input field
       And user should be able to see password input field
       And user should be able to see login button
+
+    @Positive @TC2.2 @PageVerification
+    Scenario: Verification that the eye icon is working
+    Given User is not logged in
+    And user accessing url http://ptbsp.ddns.net:6882/login
+    And user input password "admin123"
+    Then user should be able to see the eye icon
+    When user click the eye icon
+    Then user should be able to see password input field in plain text

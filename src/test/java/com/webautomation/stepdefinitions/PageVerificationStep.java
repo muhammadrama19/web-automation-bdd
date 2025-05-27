@@ -59,4 +59,21 @@ public class PageVerificationStep {
         assertTrue(isButtonDisplayed);
     }
 
+    @When("user click the eye icon")
+    public void user_click_the_eye_icon() {
+        boolean isEyeIconClicked = loginAction.eyeClicked();
+        assertTrue(isEyeIconClicked);
+    }
+
+    @Then("user should be able to see the eye icon")
+    public void user_should_be_able_to_see_the_eye_icon() {
+        boolean isVisible = loginAction.isEyeIconVisible();
+        assertTrue(isVisible);
+    }
+
+    @Then("user should be able to see password input field in plain text")
+    public void user_should_be_able_to_see_password_input_field_in_plain_text() {
+        boolean isVisible = loginAction.isPasswordVisible();
+        assertTrue(isVisible);
+    }
 }
