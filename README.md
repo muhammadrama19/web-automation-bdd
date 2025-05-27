@@ -19,7 +19,7 @@ This project is a Behavior-Driven Development (BDD) test automation suite for th
 web-automation-bdd/
 ├── pom.xml
 ├── README.md
-├── edgedriver_win64/           # Edge WebDriver and notes
+├── screenshoot                         # Failed test cases screenshoot
 ├── src/
 │   ├── test/
 │   │   ├── java/
