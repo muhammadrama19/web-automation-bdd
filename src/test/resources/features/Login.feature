@@ -27,7 +27,7 @@ Feature: Login Zaidan Educare
     Then user should see the error message for incorrect password "Incorrect username or password, please try again!"
 
   Rule: Login is invalid when one or both credentials are empty
-
+  
     @Negative @TC2.5
     Scenario: Login with empty password
       When user input username "bendahara"
