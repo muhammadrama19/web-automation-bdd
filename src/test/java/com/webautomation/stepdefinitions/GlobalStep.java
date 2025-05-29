@@ -17,11 +17,6 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 
 public class GlobalStep {
-
-    @BeforeAll
-    public static void before_all() {
-        SeleniumHelper seleniumHelper = new SeleniumHelper();
-    }
     
     @Given("^(?:[uU]ser) is opened the browser$")
     public void user_is_opened_the_browser() {
@@ -37,24 +32,5 @@ public class GlobalStep {
     @Given("^(?:[uU]ser) is not logged in$")
     public void user_is_not_logged_in() {
         SeleniumHelper.getDriver().manage().deleteAllCookies();
-    }
-
-    @AfterAll
-    public static void after_all() {
-        SeleniumHelper.closeDriver();
-    }
-
-     @After
-    public void tearDown(Scenario scenario) {
-        WebDriver driver = SeleniumHelper.getDriver();
-        if (scenario.isFailed() && driver != null) {
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failed_Screenshot");
-            try {
-                FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE), new File("screenshots/" + scenario.getName() + ".png"));
-            } catch (java.io.IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

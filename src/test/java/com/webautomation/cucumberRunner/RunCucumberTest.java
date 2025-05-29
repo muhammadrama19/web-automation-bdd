@@ -14,6 +14,7 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @SelectPackages("com.webautomation")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.webautomation.stepdefinitions")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.webautomation.stepdefinitions,com.webautomation.automation.utils")
 @ConfigurationParameter(key = FEATURES_PROPERTY_NAME, value = "classpath:features")
 // @ConfigurationParameter(key = "plugin", value =
 // "html:target/cucumber-reports/cucumber")
