@@ -1,5 +1,7 @@
 package com.webautomation.automation.pagelocator;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,4 +19,6 @@ public class DashboardLocator {
     @FindBy(xpath = "//button[text()='Ya']")
     public WebElement logoutConfirmButton;
 
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[2]/div/div/div/div/ul/li/a")
+    public List<WebElement> navbarItems;
 }

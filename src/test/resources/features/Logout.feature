@@ -4,8 +4,9 @@ Feature: Logout Zaidan Educare
   Background:
     Given user is opened the browser
     And user accessing url http://ptbsp.ddns.net:6882/
-    When user input username "bendahara" and password "admin123"
+    And user input username "bendahara" and password "admin123"
     And user click login button
+    And user should see the dashboard page
 
   @Positive @TC3.1
   Scenario: Logout redirects to login page

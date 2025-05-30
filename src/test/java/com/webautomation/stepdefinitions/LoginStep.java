@@ -39,6 +39,7 @@ public class LoginStep {
     public void user_should_see_the_dashboard_page() {
         assertTrue(dashboardAction.isBendaharaDashboardTitleExists());
         assertTrue(dashboardAction.isBendaharaProfileExists());
+        assertTrue(dashboardAction.areNavbarItemsDisplayed());
     }
 
     @When("user input wrong username {string} and password {string}")

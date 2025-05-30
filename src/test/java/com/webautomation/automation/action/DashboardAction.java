@@ -5,6 +5,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 import com.webautomation.automation.pagelocator.DashboardLocator;
 import com.webautomation.automation.utils.SeleniumHelper;
@@ -46,5 +48,32 @@ public class DashboardAction {
             .until(ExpectedConditions.elementToBeClickable(dashboardLocator.logoutConfirmButton))
             .click();
         SeleniumHelper.waitForPageToLoad();
+    }
+
+    public boolean areNavbarItemsDisplayed() {
+        List<String> expectedItems = Arrays.asList(
+            "Dasbor",
+            "Tagihan Siswa",
+            "Transaksi Penerimaan Dana",
+            "Pengaturan Notifikasi",
+            "Status Pembayaran",
+            "Rekapitulasi",
+            "Progres Transaksi Penerimaan Dana"
+        );
+
+        try {
+            for (String expected : expectedItems) {
+                boolean found = dashboardLocator.navbarItems.stream()
+                    .anyMatch(el -> el.getText().trim().equalsIgnoreCase(expected));
+                if (!found) {
+                    System.out.println("Menu item not found: " + expected);
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error verifying navbar: " + e.getMessage());
+            return false;
+        }
     }
 }
